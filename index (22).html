@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jeffy's Cereal Search! — Official Website</title>
+  <link rel="icon" type="image/jpeg" href="https://static.wikia.nocookie.net/smlogan/images/3/30/SML_Jeffy_Icon.jpg/revision/latest?cb=20220910002809">
+  <meta property="og:title" content="Jeffy's Cereal Search! — Official Website" />
+  <meta property="og:description" content="A free Baldi's Basics mod starring Jeffy & Mario! Collect 7 boxes of Cheerios and escape summer school — but Jeffy is watching. Download for Windows & Linux!" />
+  <meta property="og:image" content="https://img.itch.zone/aW1hZ2UvNDM0NTE5My8yNTk1NzgzMy5wbmc=/original/rbBhZk.png" />
+  <meta property="og:image:width" content="1280" />
+  <meta property="og:image:height" content="720" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Jeffy's Cereal Search!" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Jeffy's Cereal Search! — Official Website" />
+  <meta name="twitter:description" content="A free Baldi's Basics mod starring Jeffy & Mario! Collect 7 boxes of Cheerios and escape summer school — but Jeffy is watching. Download for Windows & Linux!" />
+  <meta name="twitter:image" content="https://img.itch.zone/aW1hZ2UvNDM0NTE5My8yNTk1NzgzMy5wbmc=/original/rbBhZk.png" />
+  <meta name="description" content="A free Baldi's Basics mod starring Jeffy & Mario! Collect 7 boxes of Cheerios and escape summer school — but Jeffy is watching. Download for Windows & Linux!" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --yellow: #FFE818;
+      --red: #E8321A;
+      --blue: #5BAAFA;
+      --purple: #9B59FF;
+      --green: #2ECC40;
+      --orange: #FF7A1A;
+      --white: #FFFDF0;
+      --dark: #12111F;
+      --card: rgba(255,255,255,0.05);
+      --border: rgba(255,255,255,0.1);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Nunito', sans-serif; background: var(--dark); color: var(--white); overflow-x: hidden; }
+    body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background: radial-gradient(circle at 10% 15%, rgba(255,232,24,0.07) 0%, transparent 40%),
+                  radial-gradient(circle at 90% 80%, rgba(91,170,250,0.07) 0%, transparent 40%),
+                  radial-gradient(circle at 50% 50%, rgba(155,89,255,0.04) 0%, transparent 60%);
+    }
+    .cereal-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+    .piece { position: absolute; animation: floatUp linear infinite; opacity: 0.13; }
+    @keyframes floatUp { 0%{transform:translateY(110vh) rotate(0deg)} 100%{transform:translateY(-10vh) rotate(720deg)} }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 40px;
+      background: rgba(18,17,31,0.92); backdrop-filter: blur(14px);
+      border-bottom: 3px solid var(--yellow);
+    }
+    .nav-logo { font-family: 'Fredoka One', cursive; font-size: 1.3rem; color: var(--yellow); text-decoration: none; }
+    .nav-links { display: flex; gap: 22px; list-style: none; }
+    .nav-links a { color: var(--white); text-decoration: none; font-weight: 700; font-size: 0.88rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--yellow); }
+    section { position: relative; z-index: 1; padding: 90px 24px; }
+    .inner { max-width: 1020px; margin: 0 auto; }
+    .section-tag { font-family: 'Fredoka One', cursive; font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 10px; }
+    .section-title { font-family: 'Fredoka One', cursive; font-size: clamp(2rem, 5vw, 2.9rem); color: var(--white); margin-bottom: 40px; line-height: 1.1; }
+    .section-title span { color: var(--yellow); }
+    .divider { width: 100%; height: 5px; position: relative; z-index: 1;
+      background: repeating-linear-gradient(90deg, var(--yellow) 0,var(--yellow) 30px, var(--red) 30px,var(--red) 60px, var(--blue) 60px,var(--blue) 90px, var(--purple) 90px,var(--purple) 120px); }
+    /* HERO */
+    .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 24px 80px; }
+    .hero-badge { display: inline-block; background: var(--red); color: #fff; font-weight: 900; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; padding: 6px 18px; border-radius: 100px; margin-bottom: 22px; animation: pulse 2.2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.06)} }
+    .hero-title { font-family: 'Fredoka One', cursive; font-size: clamp(3.2rem, 11vw, 7rem); line-height: 1; color: var(--yellow); text-shadow: 5px 5px 0 var(--red), 9px 9px 0 rgba(0,0,0,0.25); margin-bottom: 14px; animation: wobble 3.5s ease-in-out infinite; }
+    @keyframes wobble { 0%,100%{transform:rotate(-1deg)} 50%{transform:rotate(1deg)} }
+    .hero-sub { font-size: clamp(1rem, 2.5vw, 1.35rem); font-weight: 700; color: var(--blue); margin-bottom: 12px; }
+    .hero-desc { font-size: 1rem; color: rgba(255,253,240,0.65); max-width: 560px; margin: 0 auto 36px; line-height: 1.7; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+    .btn { display: inline-block; font-family: 'Fredoka One', cursive; font-size: 1.1rem; padding: 13px 32px; border-radius: 100px; text-decoration: none; border: none; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; letter-spacing: 0.5px; }
+    .btn:hover { transform: translateY(-3px); }
+    .btn:active { transform: translateY(0); }
+    .btn-yellow { background: var(--yellow); color: var(--dark); box-shadow: 0 4px 0 #b3a500; }
+    .btn-yellow:hover { box-shadow: 0 7px 0 #b3a500, 0 10px 24px rgba(255,232,24,0.35); }
+    .btn-outline { background: transparent; color: var(--white); border: 3px solid var(--blue); box-shadow: 0 4px 0 #1a5a9e; }
+    .btn-outline:hover { background: rgba(91,170,250,0.12); box-shadow: 0 7px 0 #1a5a9e; }
+    .btn-red { background: var(--red); color: #fff; box-shadow: 0 4px 0 #9e1f0a; }
+    .btn-red:hover { box-shadow: 0 7px 0 #9e1f0a, 0 10px 24px rgba(232,50,26,0.35); }
+    .hero-deco { position: absolute; pointer-events: none; animation: spin ease-in-out infinite; opacity: 0.55; }
+    @keyframes spin { 0%{transform:rotate(0deg) scale(1)} 50%{transform:rotate(180deg) scale(1.12)} 100%{transform:rotate(360deg) scale(1)} }
+    /* PLAY */
+    .play-wrap { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+    .iframe-box { border-radius: 20px; overflow: hidden; border: 4px solid var(--yellow); box-shadow: 0 0 0 2px var(--red), 0 20px 60px rgba(0,0,0,0.5); max-width: 580px; width: 100%; }
+    .iframe-box iframe { display: block; width: 100%; }
+    /* STORY */
+    .story-section { background: rgba(155,89,255,0.05); }
+    .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    @media(max-width:700px){ .story-grid { grid-template-columns: 1fr; gap: 32px; } }
+    .story-text p { font-size: 1rem; color: rgba(255,253,240,0.78); line-height: 1.85; margin-bottom: 16px; }
+    .story-text strong { color: var(--yellow); }
+    .story-box { background: rgba(255,232,24,0.06); border: 2px solid rgba(255,232,24,0.18); border-radius: 20px; padding: 28px 24px; }
+    .story-box h3 { font-family: 'Fredoka One', cursive; color: var(--yellow); font-size: 1.2rem; margin-bottom: 14px; }
+    .story-box p { font-size: 0.95rem; color: rgba(255,253,240,0.7); line-height: 1.75; margin-bottom: 12px; }
+    .story-box p:last-child { margin-bottom: 0; }
+    /* CONTROLS */
+    .controls-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 16px; }
+    .ctrl-card { background: var(--card); border: 2px solid var(--border); border-radius: 16px; padding: 22px 18px; display: flex; align-items: flex-start; gap: 14px; transition: transform 0.2s, border-color 0.2s; }
+    .ctrl-card:hover { transform: translateY(-4px); border-color: var(--blue); }
+    .ctrl-key { font-family: 'Fredoka One', cursive; font-size: 0.85rem; background: rgba(91,170,250,0.18); color: var(--blue); border: 2px solid rgba(91,170,250,0.4); border-radius: 8px; padding: 4px 10px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+    .ctrl-desc { font-size: 0.9rem; color: rgba(255,253,240,0.75); line-height: 1.5; }
+    .ctrl-desc strong { color: var(--white); font-weight: 900; display: block; margin-bottom: 2px; }
+    /* GALLERY */
+    .screenshots-section { background: rgba(91,170,250,0.04); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 18px; }
+    .gallery-item { border-radius: 16px; overflow: hidden; border: 2px solid var(--border); aspect-ratio: 16/9; background: rgba(255,255,255,0.04); display: flex; align-items: center; justify-content: center; transition: transform 0.2s, border-color 0.2s; }
+    .gallery-item:hover { transform: scale(1.03); border-color: var(--yellow); }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    /* VIDEO */
+    .video-wrap { max-width: 800px; margin: 0 auto; border-radius: 20px; overflow: hidden; border: 4px solid var(--blue); box-shadow: 0 0 0 2px var(--purple), 0 20px 60px rgba(0,0,0,0.5); aspect-ratio: 16/9; }
+    .video-wrap iframe { width: 100%; height: 100%; display: block; border: none; }
+    /* DOWNLOAD */
+    .download-section { background: linear-gradient(160deg, rgba(255,232,24,0.06) 0%, rgba(91,170,250,0.06) 50%, rgba(155,89,255,0.05) 100%); position: relative; overflow: hidden; }
+    .download-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 80% 20%, rgba(255,232,24,0.08) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(91,170,250,0.08) 0%, transparent 50%); pointer-events: none; }
+    .dl-hero { text-align: center; margin-bottom: 56px; }
+    .dl-hero-badge { display: inline-block; background: linear-gradient(135deg, var(--yellow), var(--orange)); color: var(--dark); font-family: 'Fredoka One', cursive; font-size: 0.78rem; letter-spacing: 3px; text-transform: uppercase; padding: 6px 20px; border-radius: 100px; margin-bottom: 18px; }
+    .dl-hero p { font-size: 1rem; color: rgba(255,253,240,0.55); max-width: 480px; margin: 0 auto; line-height: 1.7; }
+    .dl-main-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 22px; margin-bottom: 60px; }
+    .dl-card { background: rgba(255,255,255,0.04); border-radius: 24px; padding: 32px 26px 28px; display: flex; flex-direction: column; gap: 0; transition: transform 0.25s, box-shadow 0.25s; position: relative; overflow: hidden; }
+    .dl-card.win { border: 2px solid rgba(91,170,250,0.3); }
+    .dl-card.win::after { content: ''; position: absolute; top: -40px; right: -40px; width: 140px; height: 140px; border-radius: 50%; background: radial-gradient(circle, rgba(91,170,250,0.12) 0%, transparent 70%); pointer-events: none; }
+    .dl-card.win:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(91,170,250,0.2), 0 0 0 1px rgba(91,170,250,0.4); }
+    .dl-card.linux { border: 2px solid rgba(255,122,26,0.3); }
+    .dl-card.linux::after { content: ''; position: absolute; top: -40px; right: -40px; width: 140px; height: 140px; border-radius: 50%; background: radial-gradient(circle, rgba(255,122,26,0.12) 0%, transparent 70%); pointer-events: none; }
+    .dl-card.linux:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(255,122,26,0.2), 0 0 0 1px rgba(255,122,26,0.4); }
+    .dl-card-top { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+    .dl-card-icon-wrap { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; flex-shrink: 0; }
+    .dl-card.win .dl-card-icon-wrap { background: rgba(91,170,250,0.15); }
+    .dl-card.linux .dl-card-icon-wrap { background: rgba(255,122,26,0.15); }
+    .dl-card-title { font-family: 'Fredoka One', cursive; font-size: 1.35rem; color: var(--white); line-height: 1.1; }
+    .dl-card-version { font-size: 0.78rem; color: rgba(255,253,240,0.35); margin-top: 2px; font-weight: 700; letter-spacing: 1px; }
+    .dl-card-desc { font-size: 0.9rem; color: rgba(255,253,240,0.55); line-height: 1.6; margin-bottom: 22px; flex: 1; }
+    .dl-card-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+    .dl-tag { font-size: 0.72rem; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 6px; }
+    .dl-tag-blue { background: rgba(91,170,250,0.15); color: var(--blue); }
+    .dl-tag-orange { background: rgba(255,122,26,0.15); color: var(--orange); }
+    .dl-tag-green { background: rgba(46,204,64,0.15); color: var(--green); }
+    .dl-tag-yellow { background: rgba(255,232,24,0.15); color: var(--yellow); }
+    .dl-btn { display: flex; align-items: center; justify-content: center; gap: 10px; font-family: 'Fredoka One', cursive; font-size: 1.05rem; padding: 13px 24px; border-radius: 14px; text-decoration: none; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s, filter 0.15s; width: 100%; }
+    .dl-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+    .dl-btn:active { transform: translateY(0); }
+    .dl-btn-blue { background: linear-gradient(135deg, var(--blue), #3a8fe8); color: var(--dark); box-shadow: 0 4px 0 #1a5a9e, 0 8px 24px rgba(91,170,250,0.25); font-weight: 900; }
+    .dl-btn-orange { background: linear-gradient(135deg, var(--orange), #e85c00); color: #fff; box-shadow: 0 4px 0 #a04500, 0 8px 24px rgba(255,122,26,0.25); font-weight: 900; }
+    .dl-divider-label { display: flex; align-items: center; gap: 16px; margin: 0 0 40px; }
+    .dl-divider-label::before, .dl-divider-label::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.1); }
+    .dl-divider-label span { font-size: 0.78rem; color: rgba(255,253,240,0.35); font-weight: 900; letter-spacing: 3px; text-transform: uppercase; white-space: nowrap; }
+    .alt-sources-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 24px; align-items: start; }
+    .alt-embed-box { background: rgba(255,255,255,0.03); border: 2px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 22px; display: flex; flex-direction: column; align-items: center; gap: 14px; overflow: hidden; transition: border-color 0.2s; }
+    .alt-embed-box:hover { border-color: rgba(255,255,255,0.18); }
+    .alt-embed-box iframe { border-radius: 10px; max-width: 100%; }
+    .alt-embed-box a img { border-radius: 10px; max-width: 100%; display: block; }
+    .alt-embed-label { font-size: 0.72rem; color: rgba(255,253,240,0.3); font-weight: 900; letter-spacing: 3px; text-transform: uppercase; }
+    /* DONATE */
+    .donate-section { background: rgba(232,50,26,0.06); }
+    .donate-inner { max-width: 700px; margin: 0 auto; text-align: center; }
+    .donate-inner p { font-size: 1rem; color: rgba(255,253,240,0.75); line-height: 1.8; margin-bottom: 16px; }
+    .donate-inner strong { color: var(--yellow); }
+    .platform-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 20px; }
+    .platform-chip { display: flex; align-items: center; gap: 8px; background: var(--card); border: 2px solid var(--border); border-radius: 100px; padding: 10px 22px; font-weight: 700; font-size: 0.9rem; color: rgba(255,253,240,0.6); }
+    /* SOCIALS */
+    .socials-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+    .social-card { display: flex; align-items: center; gap: 16px; background: var(--card); border: 2px solid var(--border); border-radius: 18px; padding: 22px 28px; text-decoration: none; color: var(--white); transition: transform 0.2s, border-color 0.2s, background 0.2s; min-width: 220px; }
+    .social-card:hover { transform: translateY(-5px); }
+    .social-card.yt:hover  { border-color: #ff0000; background: rgba(255,0,0,0.1); }
+    .social-card.tw:hover  { border-color: #1da1f2; background: rgba(29,161,242,0.1); }
+    .social-card.itch:hover { border-color: var(--yellow); background: rgba(255,232,24,0.08); }
+    .social-icon { font-size: 2rem; flex-shrink: 0; }
+    .social-info strong { display: block; font-family: 'Fredoka One', cursive; font-size: 1.1rem; margin-bottom: 2px; }
+    .social-info span { font-size: 0.82rem; color: rgba(255,253,240,0.5); }
+    /* CONTACT */
+    .contact-section { background: rgba(46,204,64,0.04); }
+    .contact-inner { max-width: 640px; margin: 0 auto; }
+    .contact-inner > p { font-size: 1rem; color: rgba(255,253,240,0.72); line-height: 1.8; margin-bottom: 28px; }
+    .contact-methods { display: flex; flex-direction: column; gap: 14px; }
+    .contact-method { display: flex; align-items: center; gap: 14px; background: var(--card); border: 2px solid var(--border); border-radius: 14px; padding: 18px 22px; }
+    .contact-method .cm-icon { font-size: 1.6rem; flex-shrink: 0; }
+    .contact-method strong { display: block; font-size: 0.95rem; color: var(--white); margin-bottom: 2px; }
+    .contact-method a { color: var(--blue); font-size: 0.9rem; text-decoration: none; }
+    .contact-method a:hover { color: var(--yellow); }
+    .contact-method .cm-note { color: rgba(255,253,240,0.5); font-size: 0.88rem; }
+    /* DISCLAIMER */
+    .disclaimer-section { padding: 50px 24px; }
+    .disclaimer-box { max-width: 820px; margin: 0 auto; background: rgba(255,255,255,0.03); border: 2px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 28px 32px; }
+    .disclaimer-box h3 { font-family: 'Fredoka One', cursive; font-size: 0.95rem; color: rgba(255,253,240,0.45); margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; }
+    .disclaimer-box p { font-size: 0.85rem; color: rgba(255,253,240,0.4); line-height: 1.75; }
+    .disclaimer-box a { color: rgba(91,170,250,0.7); text-decoration: none; }
+    /* FOOTER */
+    footer { position: relative; z-index: 1; background: rgba(0,0,0,0.5); border-top: 4px solid var(--yellow); padding: 40px 24px; text-align: center; }
+    .footer-logo { font-family: 'Fredoka One', cursive; font-size: 1.9rem; color: var(--yellow); margin-bottom: 6px; }
+    .footer-sub { font-size: 0.88rem; color: rgba(255,253,240,0.35); margin-bottom: 18px; }
+    .footer-nav { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 18px; }
+    .footer-nav a { color: var(--blue); text-decoration: none; font-weight: 700; font-size: 0.88rem; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--yellow); }
+    .footer-copy { font-size: 0.78rem; color: rgba(255,253,240,0.25); }
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    @media(max-width:600px) { nav { padding: 12px 18px; } .nav-links { display: none; } section { padding: 60px 18px; } }
+  </style>
+</head>
+<body>
+
+<div class="cereal-bg" id="cerealBg"></div>
+
+<nav>
+  <a href="#home" class="nav-logo">&#x1F963; Jeffy's Cereal Search!</a>
+  <ul class="nav-links">
+    <li><a href="#download">Download</a></li>
+    <li><a href="#play">Play</a></li>
+    <li><a href="#story">Story</a></li>
+    <li><a href="#controls">Controls</a></li>
+    <li><a href="#screenshots">Screenshots</a></li>
+    <li><a href="#video">Video</a></li>
+    <li><a href="#donate">Donate</a></li>
+    <li><a href="#socials">Socials</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <span class="hero-deco" style="top:14%;left:5%;font-size:3.5rem;animation-duration:10s;">&#x1F963;</span>
+  <span class="hero-deco" style="top:18%;right:7%;font-size:2.8rem;animation-duration:14s;animation-direction:reverse;">&#x2B50;</span>
+  <span class="hero-deco" style="bottom:16%;left:9%;font-size:2.4rem;animation-duration:12s;">&#x1F440;</span>
+  <span class="hero-deco" style="bottom:20%;right:5%;font-size:3rem;animation-duration:9s;animation-direction:reverse;">&#x1F3AE;</span>
+  <div class="hero-badge">&#x2728; Official Website &mdash; Now Available for Direct Download! &#x2728;</div>
+  <h1 class="hero-title">Jeffy's<br>Cereal Search!</h1>
+  <p class="hero-sub">A Baldi's Basics Mod &mdash; Starring Jeffy &amp; Mario &#x1F389;</p>
+  <p class="hero-desc">Mario is trapped inside Jeffy's summer school. Collect 7 boxes of Cheerios to escape&hellip; but Jeffy is watching. &#x1F440;</p>
+  <div class="hero-btns">
+    <a href="#download" class="btn btn-yellow">&#x2B07;&#xFE0F; Download Free</a>
+    <button onclick="if(navigator.share){navigator.share({title:'Jeffy\'s Cereal Search!',text:'Check out this free Baldi\'s Basics mod starring Jeffy & Mario!',url:window.location.href})}else{navigator.clipboard.writeText(window.location.href);alert('Link copied to clipboard!');}" class="btn btn-outline">&#x1F4E4; Sharing is Caring</button>
+    <a href="#donate" class="btn btn-red">&#x2764;&#xFE0F; Support Us</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DOWNLOAD -->
+<section class="download-section" id="download">
+  <div class="inner" style="position:relative;z-index:1;">
+
+    <!-- Section header -->
+    <div class="dl-hero reveal">
+      <div class="dl-hero-badge">&#x2B07;&#xFE0F; Direct Download &mdash; No Account Needed</div>
+      <p class="section-tag" style="margin-bottom:8px;">&#x1F4E6; Get the Game</p>
+      <h2 class="section-title" style="margin-bottom:14px;">Download <span>Right Here!</span></h2>
+      <p>Get the game straight from the official website &mdash; no third-party account needed. Just click and play!</p>
+    </div>
+
+    <!-- Main download cards -->
+    <div class="dl-main-grid">
+
+      <!-- Windows Installer -->
+      <div class="dl-card win reveal" style="transition-delay:0.00s">
+        <div class="dl-card-top">
+          <div class="dl-card-icon-wrap">&#x1FA9F;</div>
+          <div>
+            <div class="dl-card-title">Windows Installer</div>
+            <div class="dl-card-version">v1.0.1 &middot; RECOMMENDED</div>
+          </div>
+        </div>
+        <p class="dl-card-desc">The easiest way to install the game on Windows. Just download, run the .exe, and you're in!</p>
+        <div class="dl-card-tags">
+          <span class="dl-tag dl-tag-blue">&#x1FA9F; Windows</span>
+          <span class="dl-tag dl-tag-green">&#x2714; Easy Install</span>
+          <span class="dl-tag dl-tag-yellow">&#x1F4E6; .exe</span>
+        </div>
+        <a href="https://download1085.mediafire.com/clh5wf8sruigF492oUcPmLhk_Z1z-eoShX52xwiASEASYx6jdnNgov54sXcs3CXu_tpazjwnEAn9tV7e0hdVc1tfw_59_v-dagHrowcEkOVYFGYV6bQTlnLCpMlMRPQzdjoL380XyLTE9i1G1qhEMP0D5XlFEhZ4lKS9NXvnfC-CVg/q8h9dik3uq1wetd/Jeffy%27s+Cereal+Search%21.exe" class="dl-btn dl-btn-blue">&#x2B07; Download Installer (.exe)</a>
+      </div>
+
+      <!-- Windows ZIP -->
+      <div class="dl-card win reveal" style="transition-delay:0.08s">
+        <div class="dl-card-top">
+          <div class="dl-card-icon-wrap">&#x1F5DC;&#xFE0F;</div>
+          <div>
+            <div class="dl-card-title">Windows ZIP</div>
+            <div class="dl-card-version">v1.0.1 &middot; PORTABLE</div>
+          </div>
+        </div>
+        <p class="dl-card-desc">Prefer no installer? Download the portable ZIP, extract it anywhere, and launch the game directly.</p>
+        <div class="dl-card-tags">
+          <span class="dl-tag dl-tag-blue">&#x1FA9F; Windows</span>
+          <span class="dl-tag dl-tag-green">&#x1F4C1; Portable</span>
+          <span class="dl-tag dl-tag-yellow">&#x1F4E6; .zip</span>
+        </div>
+        <a href="https://download1076.mediafire.com/il3cypbbusbgaX93xL5eP99e6iIhjfdU57pxeHWhPoaWbC7YiqPuNws3aI-nVg7hrnAB5yv4SGcG9cDz47mRD0-1E_IR1ucpRSQzVNilJ_ocWghPAQbNhUFW12FbxDWtBwueUKO3uiwo5-KmuxrUvzAfWDJPmc0JgRA8s3xSnlJmlg/2f42pai84dtj609/Jeffy%27s+Cereal+Search%21+%5BWINDOWS%5D+v1.0.1.zip" class="dl-btn dl-btn-blue">&#x2B07; Download ZIP</a>
+      </div>
+
+      <!-- Linux -->
+      <div class="dl-card linux reveal" style="transition-delay:0.16s">
+        <div class="dl-card-top">
+          <div class="dl-card-icon-wrap">&#x1F427;</div>
+          <div>
+            <div class="dl-card-title">Linux</div>
+            <div class="dl-card-version">v1.0.1 &middot; ZIP ARCHIVE</div>
+          </div>
+        </div>
+        <p class="dl-card-desc">Running Linux? We've got you covered. Extract the ZIP and launch the game from the folder.</p>
+        <div class="dl-card-tags">
+          <span class="dl-tag dl-tag-orange">&#x1F427; Linux</span>
+          <span class="dl-tag dl-tag-green">&#x1F4C1; Portable</span>
+          <span class="dl-tag dl-tag-yellow">&#x1F4E6; .zip</span>
+        </div>
+        <a href="https://download1325.mediafire.com/bllqc2e7y4wg56KQvm_84xzPcI8NxaB4NPawtVIXqPWFf-95Z5LrOPvMYqw3K4QuLhgDOEZMNXjYMa0-8M-0qpSHbznD8blsKxNEvtS7eplEpkXBztLpO20BlAbkWs7Dvd2R38X2Vum2sY0ehDP_AaVA1-E1rrJKAcczJmLdCztHxw/m6rwd7x94ntyrue/Jeffy%27s+Cereal+Search%21+%5BLINUX%5D+v1.0.1.zip" class="dl-btn dl-btn-orange">&#x2B07; Download for Linux</a>
+      </div>
+
+    </div>
+
+    <!-- Alt sources divider -->
+    <div class="dl-divider-label reveal">
+      <span>&#x1F310; Or download from other platforms</span>
+    </div>
+
+    <!-- Alt source embeds -->
+    <div class="alt-sources-grid">
+      <div class="alt-embed-box reveal" style="transition-delay:0.00s">
+        <span class="alt-embed-label">Itch.io</span>
+        <iframe frameborder="0" src="https://itch.io/embed/4345193?border_width=5&bg_color=222222&fg_color=eeeeee&link_color=5bcafa&border_color=ee0000" width="560" height="175" style="max-width:100%;">
+          <a href="https://daxipaxi.itch.io/sml">Jeffy's Cereal Search! by DaxiPaxi</a>
+        </iframe>
+      </div>
+      <div class="alt-embed-box reveal" style="transition-delay:0.08s">
+        <span class="alt-embed-label">Game Jolt</span>
+        <iframe src="https://widgets.gamejolt.com/package/v1?key=hc8UCFvw" frameborder="0" width="500" height="245" style="max-width:100%;"></iframe>
+      </div>
+      <div class="alt-embed-box reveal" style="transition-delay:0.16s">
+        <span class="alt-embed-label">GameBanana</span>
+        <a href="https://gamebanana.com/mods/657817" target="_blank">
+          <img src="https://gamebanana.com/mods/embeddables/657817?type=large" alt="Download on GameBanana" style="max-width:100%;border-radius:10px;" />
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- PLAY -->
+<section id="play">
+  <div class="inner">
+    <p class="section-tag reveal">&#x25B6; Play the Game</p>
+    <h2 class="section-title reveal">Jump In <span>Right Now!</span></h2>
+    <div class="play-wrap">
+      <div class="iframe-box reveal">
+        <iframe frameborder="0" src="https://itch.io/embed/4345193?linkback=true&border_width=5&link_color=5baafa&border_color=ffe818" width="560" height="175">
+          <a href="https://daxipaxi.itch.io/sml">Jeffy's Cereal Search! by DaxiPaxi</a>
+        </iframe>
+      </div>
+      <p style="font-size:0.88rem;color:rgba(255,253,240,0.4);text-align:center;" class="reveal">Click the widget to open on Itch.io!</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- STORY -->
+<section class="story-section" id="story">
+  <div class="inner">
+    <p class="section-tag reveal">&#x1F4D6; The Story</p>
+    <h2 class="section-title reveal">Summer School Just Got <span>Way Worse</span></h2>
+    <div class="story-grid">
+      <div class="story-text reveal">
+        <p>Jackie Chu is heading off to see the <strong>Great Wall of China</strong>, and needs someone to run his summer school while he's gone. For some reason&hellip; he picks <strong>Jeffy</strong>. (Probably for the views.)</p>
+        <p>Meanwhile, <strong>Mario</strong> is looking everywhere for Jeffy &mdash; and finds him locked inside the school. Now Mario is trapped too.</p>
+        <p>To escape, Mario must collect <strong>7 boxes of Cheerios</strong> scattered around the school, for absolutely no reason at all. But it won't be easy&hellip;</p>
+        <p><strong>Jeffy is watching. &#x1F440;</strong> And summer school just got a whole lot worse. Can you survive and escape before it's too late?</p>
+        <p style="margin-top:28px;"><a href="https://daxipaxi.itch.io/sml" target="_blank" class="btn btn-yellow" style="display:inline-block;">&#x1F3AE; Play Now &mdash; It's Free!</a></p>
+      </div>
+      <div class="story-box reveal" style="transition-delay:0.15s;">
+        <h3>&#x26A1; Quick Facts</h3>
+        <p><strong style="color:var(--white);">Base Game:</strong> Baldi's Basics by MystMan12</p>
+        <p><strong style="color:var(--white);">Engine:</strong> Unity</p>
+        <p><strong style="color:var(--white);">Platforms:</strong> Windows &amp; Linux</p>
+        <p><strong style="color:var(--white);">Price:</strong> Completely free to play</p>
+        <p><strong style="color:var(--white);">Objective:</strong> Collect 7 Cheerios boxes &amp; escape</p>
+        <p><strong style="color:var(--white);">Theme:</strong> SML (SuperMarioLogan)</p>
+        <p><strong style="color:var(--white);">Updates:</strong> Every few days!</p>
+        <p style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.1);font-size:0.85rem;color:rgba(255,253,240,0.5);">
+          Made a YouTube video playing the game? Drop a comment on Itch.io with the link and we'll put you on the page! &#x1F3AC;
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTROLS -->
+<section id="controls">
+  <div class="inner">
+    <p class="section-tag reveal">&#x1F3AE; How to Play</p>
+    <h2 class="section-title reveal">Game <span>Controls</span></h2>
+    <div class="controls-grid">
+      <div class="ctrl-card reveal" style="transition-delay:0.00s"><span class="ctrl-key">WASD</span><div class="ctrl-desc"><strong>Move</strong>Walk around the school</div></div>
+      <div class="ctrl-card reveal" style="transition-delay:0.05s"><span class="ctrl-key">Mouse</span><div class="ctrl-desc"><strong>Look Around</strong>Turn &amp; aim with your mouse</div></div>
+      <div class="ctrl-card reveal" style="transition-delay:0.10s"><span class="ctrl-key">Left Click</span><div class="ctrl-desc"><strong>Interact</strong>Open doors &amp; pick up items</div></div>
+      <div class="ctrl-card reveal" style="transition-delay:0.15s"><span class="ctrl-key">Right Click</span><div class="ctrl-desc"><strong>Use Item</strong>Use the currently selected item</div></div>
+      <div class="ctrl-card reveal" style="transition-delay:0.20s"><span class="ctrl-key">Scroll</span><div class="ctrl-desc"><strong>Switch Item</strong>Change your selected item</div></div>
+      <div class="ctrl-card reveal" style="transition-delay:0.25s"><span class="ctrl-key">Shift</span><div class="ctrl-desc"><strong>Run</strong>Sprint &mdash; watch your stamina bar!</div></div>
+      <div class="ctrl-card reveal" style="transition-delay:0.30s"><span class="ctrl-key">Space</span><div class="ctrl-desc"><strong>Look Behind</strong>Quickly glance over your shoulder</div></div>
+      <div class="ctrl-card reveal" style="transition-delay:0.35s"><span class="ctrl-key">Escape</span><div class="ctrl-desc"><strong>Pause</strong>Open the pause menu</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SCREENSHOTS -->
+<section class="screenshots-section" id="screenshots">
+  <div class="inner">
+    <p class="section-tag reveal">&#x1F4F8; Screenshots</p>
+    <h2 class="section-title reveal">See the <span>Game</span> for Yourself</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal" style="transition-delay:0.00s"><img src="https://img.itch.zone/aW1hZ2UvNDM0NTE5My8yNTk1NzgzMy5wbmc=/original/rbBhZk.png" alt="Screenshot 1"></div>
+      <div class="gallery-item reveal" style="transition-delay:0.05s"><img src="https://img.itch.zone/aW1hZ2UvNDM0NTE5My8yNTk1NzgxMS5wbmc=/original/h0LFcs.png" alt="Screenshot 2"></div>
+      <div class="gallery-item reveal" style="transition-delay:0.10s"><img src="https://img.itch.zone/aW1hZ2UvNDM0NTE5My8yNTk1NzgxNS5wbmc=/original/w%2F%2F3TM.png" alt="Screenshot 3"></div>
+      <div class="gallery-item reveal" style="transition-delay:0.15s"><img src="https://img.itch.zone/aW1hZ2UvNDM0NTE5My8yNTk1NzgxNC5wbmc=/original/wPvYgi.png" alt="Screenshot 4"></div>
+      <div class="gallery-item reveal" style="transition-delay:0.20s"><img src="https://img.itch.zone/aW1hZ2UvNDM0NTE5My8yNTk1NzgxMi5wbmc=/original/OiZVGf.png" alt="Screenshot 5"></div>
+      <div class="gallery-item reveal" style="transition-delay:0.25s"><img src="https://img.itch.zone/aW1hZ2UvNDM0NTE5My8yNTk1NzgzOS5wbmc=/original/LU0ZLI.png" alt="Screenshot 6"></div>
+      <div class="gallery-item reveal" style="transition-delay:0.30s"><img src="https://img.itch.zone/aW1hZ2UvNDM0NTE5My8yNTk1NzgxMy5wbmc=/original/DU71Dx.png" alt="Screenshot 7"></div>
+      <div class="gallery-item reveal" style="transition-delay:0.35s"><img src="https://img.itch.zone/aW1hZ2UvNDM0NTE5My8yNTk1Nzg0MS5wbmc=/original/%2B5CEx5.png" alt="Screenshot 8"></div>
+      <div class="gallery-item reveal" style="transition-delay:0.40s"><img src="https://img.itch.zone/aW1hZ2UvNDM0NTE5My8yNTk1NzgzOC5wbmc=/original/yv0mxt.png" alt="Screenshot 9"></div>
+      <div class="gallery-item reveal" style="transition-delay:0.45s"><img src="https://img.itch.zone/aW1hZ2UvNDM0NTE5My8yNTk1Nzg0MC5wbmc=/original/ETXhJu.png" alt="Screenshot 10"></div>
+    </div>
+    <p style="text-align:center;margin-top:18px;font-size:0.8rem;color:rgba(255,253,240,0.3);" class="reveal">Images taken in Alpha &mdash; subject to change.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- VIDEO -->
+<section id="video">
+  <div class="inner">
+    <p class="section-tag reveal">&#x1F3AC; Watch</p>
+    <h2 class="section-title reveal">See It in <span>Action</span></h2>
+    <div class="video-wrap reveal">
+      <iframe src="https://www.youtube.com/embed/j_AF3wLyfeY?si=YcRnPiY1g5XQ7P5l" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <p style="text-align:center;margin-top:16px;font-size:0.9rem;color:rgba(255,253,240,0.4);" class="reveal">
+      Made your own playthrough? <a href="https://itch.io/topic/6058550/new-post" target="_blank" style="color:var(--blue);text-decoration:none;">Drop a comment on Itch.io</a> and we'll feature you! &#x1F389;
+    </p>
+  </div>
+</section>
+
+
+<div class="divider"></div>
+
+<!-- DONATE -->
+<section class="donate-section" id="donate">
+  <div class="inner">
+    <div class="donate-inner">
+      <p class="section-tag reveal" style="text-align:center;">&#x2764;&#xFE0F; Support the Game</p>
+      <h2 class="section-title reveal" style="text-align:center;">Help Us <span>Grow!</span></h2>
+      <p class="reveal">We would be incredibly thankful for any donation to help support this project. Right now we <strong>cannot release on macOS, the App Store, or Google Play</strong> because publishing on these platforms requires developer accounts and fees we currently can't afford.</p>
+      <p class="reveal">Every single donation goes <strong>directly toward the developer fees</strong> needed to bring the game to macOS, the Apple App Store, and Google Play &mdash; making it available to way more players worldwide. Even a tiny amount makes a huge difference!</p>
+      <p class="reveal">Thank you so much for helping us make this possible. &#x1F64F;</p>
+      <div style="margin-top:28px;" class="reveal">
+        <button onclick="window.open('https://itch.io/checkout/34576892?sig=ZNbp5ZGObcWYqB3wSM1rBx1X5K8%3D','donatePopup','width=600,height=700,scrollbars=yes,resizable=yes')" class="btn btn-yellow" style="font-size:1rem;padding:12px 32px;">&#x1F49B; Donate on Itch.io</button>
+      </div>
+      <div class="platform-row reveal">
+        <div class="platform-chip">&#x1F34E; macOS &mdash; Coming with your help</div>
+        <div class="platform-chip">&#x1F4F1; App Store &mdash; Coming with your help</div>
+        <div class="platform-chip">&#x1F916; Google Play &mdash; Coming with your help</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SOCIALS -->
+<section id="socials">
+  <div class="inner">
+    <p class="section-tag reveal">&#x1F310; Find Us Online</p>
+    <h2 class="section-title reveal">Follow <span>DaxiPaxi</span></h2>
+    <div class="socials-grid reveal">
+      <a href="https://www.youtube.com/@DaxiPaxi" target="_blank" class="social-card yt">
+        <span class="social-icon">&#x1F4FA;</span>
+        <div class="social-info"><strong>YouTube</strong><span>@DaxiPaxi &mdash; Videos &amp; updates</span></div>
+      </a>
+      <a href="https://x.com/@dagurspelar" target="_blank" class="social-card tw">
+        <span class="social-icon">&#x1F426;</span>
+        <div class="social-info"><strong>Twitter / X</strong><span>@dagurspelar &mdash; News &amp; posts</span></div>
+      </a>
+      <a href="https://daxipaxi.itch.io/" target="_blank" class="social-card itch">
+        <span class="social-icon">&#x1F3AE;</span>
+        <div class="social-info"><strong>Itch.io</strong><span>daxipaxi &mdash; Play &amp; download</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="inner">
+    <div class="contact-inner">
+      <p class="section-tag reveal">&#x1F4EC; Get in Touch</p>
+      <h2 class="section-title reveal">Say <span>Hello!</span></h2>
+      <p class="reveal">Got feedback, a bug report, a fan video, or just want to say hi? Reach out through any of the channels below &mdash; we'd love to hear from you!</p>
+      <div class="contact-methods">
+        <div class="contact-method reveal">
+          <span class="cm-icon">&#x1F3AE;</span>
+          <div><strong>Itch.io Forum</strong><a href="https://itch.io/topic/6058550/new-post" target="_blank">Post on our Itch.io topic</a></div>
+        </div>
+        <div class="contact-method reveal" style="transition-delay:0.08s">
+          <span class="cm-icon">&#x1F426;</span>
+          <div><strong>Twitter / X DM</strong><a href="https://x.com/messages/compose?recipient_id=1601648143803863042&text=Hi%20I%20found%20you%20on%20your%20site" target="_blank">Send a direct message</a></div>
+        </div>
+        <div class="contact-method reveal" style="transition-delay:0.16s">
+          <span class="cm-icon">&#x1F4AC;</span>
+          <div><strong>Discord</strong><a href="https://discord.com/users/1053922050353401856" target="_blank">Message on Discord</a></div>
+        </div>
+        <div class="contact-method reveal" style="transition-delay:0.24s">
+          <span class="cm-icon">&#x1F4E7;</span>
+          <div><strong>Email</strong><a href="mailto:dagurspelar@gmail.com">dagurspelar@gmail.com</a></div>
+        </div>
+        <div class="contact-method reveal" style="transition-delay:0.32s">
+          <span class="cm-icon">&#x1F3AC;</span>
+          <div><strong>Get Featured!</strong><span class="cm-note">Make a YouTube video of the game, drop your link in a comment on Itch.io, and we'll put you on the page!</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DISCLAIMER -->
+<section class="disclaimer-section">
+  <div class="disclaimer-box reveal">
+    <h3>&#x1F4CB; Disclaimer</h3>
+    <p>This game is a fan-made mod inspired by <strong style="color:rgba(255,253,240,0.55);">Baldi's Basics in Education and Learning</strong>, originally created by <a href="https://mystman12.itch.io/" target="_blank">MystMan12</a>. This is a fan project made for entertainment and learning purposes only. If you enjoy this mod, please support the original creator &mdash; they deserve all the credit for the original concept. Some assets were taken from "Jeffy's Law Of Math With Cheerios Boxes" as a remaster. The Android APK was also originally made by that project. This game was made for <strong style="color:rgba(255,253,240,0.55);">@SML (SuperMarioLogan)</strong>.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">&#x1F963; Jeffy's Cereal Search!</div>
+  <p class="footer-sub">A fan-made Baldi's Basics mod by DaxiPaxi &middot; Made with Unity &middot; Updates every few days</p>
+  <nav class="footer-nav">
+    <a href="#download">Download</a>
+    <a href="#play">Play</a>
+    <a href="#story">Story</a>
+    <a href="#controls">Controls</a>
+    <a href="#screenshots">Screenshots</a>
+    <a href="#video">Video</a>
+    <a href="#donate">Donate</a>
+    <a href="#socials">Socials</a>
+    <a href="#contact">Contact</a>
+    <a href="https://daxipaxi.itch.io/sml" target="_blank">Itch.io &#x2197;</a>
+  </nav>
+  <p class="footer-copy">&copy; 2025 DaxiPaxi &middot; Fan project &mdash; not affiliated with MystMan12 or SML &middot; Free to play</p>
+</footer>
+
+
+<script>
+  var pieces = ['&#x1F963;','&#x2B50;','&#x1F31F;','&#x2728;','&#x1F3AE;','&#x1F440;','&#x1F300;','&#x1F4AB;','&#x1F389;','&#x1F38A;','&#x1F95B;','&#x26A1;','&#x1F366;'];
+  var bg = document.getElementById('cerealBg');
+  for (var i = 0; i < 28; i++) {
+    var el = document.createElement('span');
+    el.classList.add('piece');
+    el.innerHTML = pieces[Math.floor(Math.random() * pieces.length)];
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.animationDuration = (12 + Math.random() * 22) + 's';
+    el.style.animationDelay = (-Math.random() * 28) + 's';
+    el.style.fontSize = (1.1 + Math.random() * 1.5) + 'rem';
+    bg.appendChild(el);
+  }
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+</script>
+</body>
+</html>
